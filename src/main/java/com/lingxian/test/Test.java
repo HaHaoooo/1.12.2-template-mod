@@ -1,10 +1,12 @@
 package com.lingxian.test;
 
+import com.lingxian.test.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-// this is the test mod for 灵仙
 @Mod(modid = Test.MODID, name = Test.NAME, version = Test.VERSION)
 public class Test
 {
@@ -12,8 +14,20 @@ public class Test
     public static final String NAME = "Test";
     public static final String VERSION = "1.0";
 
+    @SidedProxy(clientSide = "com.lingxian.test.proxy.ClientProxy", serverSide = "com.lingxian.test.proxy.ServerProxy")
+    public static CommonProxy proxy;
 
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event){
+        proxy.preInit();
     }
 
+    @Mod.EventHandler
+    public void Init(FMLInitializationEvent event){
+        proxy.init();
+    }
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event){
+        proxy.postInit();
     }
 }
