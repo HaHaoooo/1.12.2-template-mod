@@ -4,6 +4,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+// this is the test mod for 灵仙
 @Mod(modid = Test.MODID, name = Test.NAME, version = Test.VERSION)
 public class Test
 {
