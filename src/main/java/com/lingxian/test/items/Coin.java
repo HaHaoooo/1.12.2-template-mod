@@ -24,9 +24,10 @@ public class Coin extends ItemBase {
 
     private int metaData = -1;
 
-    public Coin() {
-        super("coin", 16, CreativeTabs.MISC);
+    public Coin(String name, int stackSize, CreativeTabs tab) {
+        super(name, stackSize, tab);
     }
+
 
     @Nonnull
     @Override
