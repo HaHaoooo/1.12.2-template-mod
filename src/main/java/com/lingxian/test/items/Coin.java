@@ -56,6 +56,7 @@ public class Coin extends ItemBase {
                 metaData++;
             }
         };
+        // 设置时间为0.1秒一次
         timer.scheduleAtFixedRate(task, 0, 100);
     }
 
