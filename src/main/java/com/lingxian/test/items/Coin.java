@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -35,6 +36,11 @@ public class Coin extends ItemBase {
         if (!worldIn.isRemote) {
             clickTimes++;
             start = clickTimes % 2 == 0;
+            if (start){
+                playerIn.sendMessage(new TextComponentString("彩虹模式启动！"));
+            } else {
+                playerIn.sendMessage(new TextComponentString("彩虹模式关闭！"));
+            }
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
