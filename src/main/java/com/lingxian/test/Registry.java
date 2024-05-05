@@ -1,7 +1,6 @@
 package com.lingxian.test;
 
 import com.lingxian.test.items.Coin;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 public class Registry {
     public static ArrayList<Item> ITEMS = new ArrayList<>();
 
-    public static final Coin coin = new Coin("coin", 16, CreativeTabs.MISC);
+    public static Coin coin = new Coin();
 
     @SubscribeEvent
     public static void registryItems(RegistryEvent.Register<Item> register) {

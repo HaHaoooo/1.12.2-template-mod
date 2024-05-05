@@ -21,10 +21,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Coin extends ItemBase {
+
     private int metaData = -1;
 
-    public Coin(String name, int stackSize, CreativeTabs tab) {
-        super(name, stackSize, tab);
+    public Coin() {
+        super("coin", 16, CreativeTabs.MISC);
     }
 
     @Nonnull
