@@ -17,18 +17,19 @@ public class Registry {
     public static final Coin coin = new Coin("coin", 16, CreativeTabs.MISC);
 
     @SubscribeEvent
-    public static void registryItems(RegistryEvent.Register<Item> register){
+    public static void registryItems(RegistryEvent.Register<Item> register) {
         ITEMS.add(coin);
-        for(Item item : ITEMS){
+        for (Item item : ITEMS) {
             register.getRegistry().register(item);
         }
     }
+
     @SubscribeEvent
-	public static void onModelRegister(ModelRegistryEvent event) {
-		for(Item item: ITEMS){
-			if(item instanceof IModel) {
-				((IModel)item).RegisterModel();
-			}
-		}
-	}
+    public static void onModelRegister(ModelRegistryEvent event) {
+        for (Item item : ITEMS) {
+            if (item instanceof IModel) {
+                ((IModel) item).RegisterModel();
+            }
+        }
+    }
 }
