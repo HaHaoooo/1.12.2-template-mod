@@ -1,6 +1,5 @@
 package com.lingxian.test.items;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -11,61 +10,59 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Coin extends ItemBase {
 
     private int metaData = -1;
+    private int ticks = 0;
+    private boolean start = false;
+    private int clickTimes = 0;
 
     public Coin(String name, int stackSize, CreativeTabs tab) {
         super(name, stackSize, tab);
     }
 
-
     @Nonnull
     @Override
     public ActionResult<ItemStack> onItemRightClick(@Nonnull World worldIn, @Nonnull EntityPlayer playerIn, @Nonnull EnumHand handIn) {
         if (!worldIn.isRemote) {
-            RayTraceResult result = rayTrace(worldIn, playerIn, false);
-            if (result.typeOfHit == RayTraceResult.Type.BLOCK) {
-                BlockPos blockPos = result.getBlockPos();
-                Block block = worldIn.getBlockState(blockPos).getBlock();
-                if (block == Blocks.GOLD_BLOCK) {
-                    changeWoolColor(worldIn, blockPos);
-                }
-            }
+            clickTimes++;
+            start = clickTimes % 2 == 0;
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
-    private void changeWoolColor(World world, BlockPos blockPos) {
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
+    @SubscribeEvent
+    public void onTick(TickEvent.PlayerTickEvent event) {
+        EntityPlayer playerIn = event.player;
+        if (start) {
+            ticks++;
+            if (ticks >= 10) {
+                ticks = 0;
                 if (metaData == 15) {
                     metaData = -1;
-                    world.setBlockState(blockPos, Blocks.GOLD_BLOCK.getDefaultState());
-                    timer.cancel();
                 }
-                world.setBlockState(blockPos, Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(metaData)));
+                BlockPos blockPos = new BlockPos(playerIn.posX, playerIn.posY - 1, playerIn.posZ);
+                playerIn.world.setBlockState(blockPos, Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(metaData)));
+                playerIn.world.setBlockState(blockPos.east(), Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(metaData)));
+                playerIn.world.setBlockState(blockPos.west(), Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(metaData)));
+                playerIn.world.setBlockState(blockPos.north(), Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(metaData)));
+                playerIn.world.setBlockState(blockPos.south(), Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(metaData)));
                 metaData++;
             }
-        };
-        // 设置时间为0.1秒一次
-        timer.scheduleAtFixedRate(task, 0, 100);
+        }
     }
 
     @Override
     public void addInformation(@Nonnull ItemStack stack, @Nullable World worldIn, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flagIn) {
-        tooltip.add("右键金块会出现彩虹哦！");
+        tooltip.add("右键后脚下会出现彩虹哦！");
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 }
