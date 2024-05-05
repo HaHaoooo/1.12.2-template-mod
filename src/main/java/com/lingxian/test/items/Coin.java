@@ -11,6 +11,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -50,7 +51,7 @@ public class Coin extends ItemBase {
         EntityPlayer playerIn = event.player;
         if (start) {
             ticks++;
-            if (ticks >= 10) {
+            if (ticks >= 20) {
                 ticks = 0;
                 if (metaData == 15) {
                     metaData = -1;
@@ -68,7 +69,24 @@ public class Coin extends ItemBase {
 
     @Override
     public void addInformation(@Nonnull ItemStack stack, @Nullable World worldIn, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flagIn) {
-        tooltip.add("右键后脚下会出现彩虹哦！");
+        if (start){
+            String rainbowText = "彩虹之力！！";
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < rainbowText.length(); i++) {
+                char c = rainbowText.charAt(i);
+                String coloredChar = setRainBowColor(c, i);
+                result.append(coloredChar);
+            }
+            tooltip.add(result.toString());
+        } else {
+            tooltip.add("右键后脚下会出现彩虹哦！");
+        }
         super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
+
+    private String setRainBowColor(char text, int index) {
+        int colorIndex = (ticks / 5 + index) % 16;
+        TextFormatting formatting = TextFormatting.fromColorIndex(colorIndex);
+        return formatting + String.valueOf(text);
     }
 }
