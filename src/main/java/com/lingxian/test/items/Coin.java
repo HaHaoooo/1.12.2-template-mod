@@ -2,6 +2,7 @@ package com.lingxian.test.items;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -14,6 +15,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -54,5 +57,11 @@ public class Coin extends ItemBase {
             }
         };
         timer.scheduleAtFixedRate(task, 0, 100);
+    }
+
+    @Override
+    public void addInformation(@Nonnull ItemStack stack, @Nullable World worldIn, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flagIn) {
+        tooltip.add("右键金块会出现彩虹哦！");
+        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 }
