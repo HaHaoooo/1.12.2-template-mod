@@ -52,6 +52,7 @@ public class Coin extends ItemBase {
             public void run() {
                 if (metaData == 15) {
                     metaData = -1;
+                    world.setBlockState(blockPos, Blocks.GOLD_BLOCK.getDefaultState());
                     timer.cancel();
                 }
                 world.setBlockState(blockPos, Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(metaData)));
