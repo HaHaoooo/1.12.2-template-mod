@@ -25,6 +25,7 @@ public class Coin extends ItemBase {
     private int metaData = -1;
     private int ticks = 0;
     private boolean start = false;
+    //private int clickTimes = 0;
 
     public Coin(String name, int stackSize, CreativeTabs tab) {
         super(name, stackSize, tab);

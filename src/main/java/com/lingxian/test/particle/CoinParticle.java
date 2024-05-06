@@ -39,7 +39,6 @@ public class CoinParticle extends Particle implements IParticleFactory {
          return new CoinParticle(worldIn, xCoordIn, yCoordIn, zCoordIn);
     }
 
-
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public static void textureBinding(TextureStitchEvent.Pre event) {

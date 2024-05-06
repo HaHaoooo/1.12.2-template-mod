@@ -7,6 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 
+// 基本物品框架
 public class ItemBase extends Item implements IModel {
     public ItemBase(String name, int stackSize, CreativeTabs tab) {
         setUnlocalizedName(Test.MODID + "." + name);
