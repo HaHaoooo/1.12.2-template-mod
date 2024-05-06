@@ -31,9 +31,13 @@ public class Coin extends ItemBase {
         super(name, stackSize, tab);
     }
 
+    //重写右键点击事件？
     @Nonnull
     @Override
     public ActionResult<ItemStack> onItemRightClick(@Nonnull World worldIn, @Nonnull EntityPlayer playerIn, @Nonnull EnumHand handIn) {
+        //todo 警告！World类的isRemote变量名虽然是 "是远程" 的意思，但请不要把它理解成是Server多人游戏启动。
+        // 因为这个属性在被赋值时调用者的复制是反的。Client调用时会把它赋值为true
+        //所以这里只有Server时启动才会能够使用
         if (!worldIn.isRemote) {
             clickTimes++;
             start = clickTimes % 2 == 0;
