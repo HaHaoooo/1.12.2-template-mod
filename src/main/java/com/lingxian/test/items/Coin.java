@@ -22,9 +22,9 @@ import java.util.List;
 
 public class Coin extends ItemBase {
 
-    private int metaData = -1;
+    private int currentColorIndex = -1;
     private int ticks = 0;
-    private boolean start = false;
+    private boolean rainbowMode = false;
 
     public Coin(String name, int stackSize, CreativeTabs tab) {
         super(name, stackSize, tab);
@@ -38,41 +38,43 @@ public class Coin extends ItemBase {
         // 因为这个属性在被赋值时调用者的复制是反的。Client调用时会把它赋值为true
         //所以这里只有Server时启动才会能够使用
         if (!worldIn.isRemote) {
-            start = !start;
-            playerIn.sendMessage(new TextComponentString(start ? "彩虹模式启动！" : "彩虹模式关闭"));
+            rainbowMode = !rainbowMode;
+            playerIn.sendMessage(new TextComponentString(rainbowMode ? "彩虹模式启动！" : "彩虹模式关闭！"));
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
     @SubscribeEvent
     public void onTick(TickEvent.PlayerTickEvent event) {
-        EntityPlayer playerIn = event.player;
-        if (start) {
+        EntityPlayer player = event.player;
+        World world = player.world;
+        if (rainbowMode) {
             ticks++;
             if (ticks >= 20) {
                 ticks = 0;
-                if (metaData >= 15) {
-                    metaData = -1;
+                if (currentColorIndex >= 15) {
+                    currentColorIndex = -1;
                 }
-                BlockPos blockPos = new BlockPos(playerIn.posX, playerIn.posY - 1, playerIn.posZ);
-                playerIn.world.setBlockState(blockPos, Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(metaData)));
-                playerIn.world.setBlockState(blockPos.east(), Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(metaData)));
-                playerIn.world.setBlockState(blockPos.west(), Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(metaData)));
-                playerIn.world.setBlockState(blockPos.north(), Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(metaData)));
-                playerIn.world.setBlockState(blockPos.south(), Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(metaData)));
-                metaData++;
+                BlockPos blockPos = new BlockPos(player.posX, player.posY - 1, player.posZ);
+                BlockPos[] blockPosArray = {blockPos, blockPos.east(), blockPos.west(), blockPos.north(), blockPos.south()};
+                for (BlockPos direction : blockPosArray) {
+                    if (world.isAirBlock(direction)) {
+                        world.setBlockState(direction, Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(currentColorIndex)));
+                    }
+                }
+                currentColorIndex++;
             }
         }
     }
 
     @Override
     public void addInformation(@Nonnull ItemStack stack, @Nullable World worldIn, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flagIn) {
-        if (start) {
+        if (rainbowMode) {
             String rainbowText = "彩虹之力！！";
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < rainbowText.length(); i++) {
                 char c = rainbowText.charAt(i);
-                String coloredChar = setRainBowColor(c, i);
+                String coloredChar = setRainbowColor(c, i);
                 result.append(coloredChar);
             }
             tooltip.add(result.toString());
@@ -82,7 +84,7 @@ public class Coin extends ItemBase {
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
-    private String setRainBowColor(char text, int index) {
+    private String setRainbowColor(char text, int index) {
         int colorIndex = (ticks / 5 + index) % 16;
         TextFormatting formatting = TextFormatting.fromColorIndex(colorIndex);
         return formatting + String.valueOf(text);
