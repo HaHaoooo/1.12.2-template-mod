@@ -51,7 +51,7 @@ public class Coin extends ItemBase {
             ticks++;
             if (ticks >= 20) {
                 ticks = 0;
-                if (metaData == 15) {
+                if (metaData >= 15) {
                     metaData = -1;
                 }
                 BlockPos blockPos = new BlockPos(playerIn.posX, playerIn.posY - 1, playerIn.posZ);
