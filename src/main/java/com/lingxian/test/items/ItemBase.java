@@ -14,8 +14,8 @@ public class ItemBase extends Item implements IModel {
         setRegistryName(Test.MODID, name);
         setCreativeTab(tab);
         setMaxStackSize(stackSize);
-        //这玩意报错，我给它注释掉了
-        //MinecraftForge.EVENT_BUS.register(this);
+        // 这是物品事件注册器，比如Coin物品里的TickEvent.PlayerTickEvent event，可以用于自定义事件
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Override
