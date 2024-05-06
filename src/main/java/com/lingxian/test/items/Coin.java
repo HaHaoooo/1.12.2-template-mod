@@ -46,7 +46,6 @@ public class Coin extends ItemBase {
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
-    // 按下开始后的操作
     @SubscribeEvent
     public void onTick(TickEvent.PlayerTickEvent event) {
         EntityPlayer playerIn = event.player;
@@ -68,14 +67,10 @@ public class Coin extends ItemBase {
         }
     }
 
-    // 物品信息栏，也就是tooltip
     @Override
     public void addInformation(@Nonnull ItemStack stack, @Nullable World worldIn, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flagIn) {
-        // 高级tooltip
         if (start){
             String rainbowText = "彩虹之力！！";
-
-            // 用StringBuilder合成动态彩色字符 + 文字
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < rainbowText.length(); i++) {
                 char c = rainbowText.charAt(i);
@@ -89,7 +84,6 @@ public class Coin extends ItemBase {
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
-    // 根据时间刻添加不同的TextFormatting
     private String setRainBowColor(char text, int index) {
         int colorIndex = (ticks / 5 + index) % 16;
         TextFormatting formatting = TextFormatting.fromColorIndex(colorIndex);
