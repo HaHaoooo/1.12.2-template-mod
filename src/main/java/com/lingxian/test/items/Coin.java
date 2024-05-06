@@ -25,7 +25,6 @@ public class Coin extends ItemBase {
     private int metaData = -1;
     private int ticks = 0;
     private boolean start = false;
-    //private int clickTimes = 0;
 
     public Coin(String name, int stackSize, CreativeTabs tab) {
         super(name, stackSize, tab);
@@ -39,8 +38,6 @@ public class Coin extends ItemBase {
         // 因为这个属性在被赋值时调用者的复制是反的。Client调用时会把它赋值为true
         //所以这里只有Server时启动才会能够使用
         if (!worldIn.isRemote) {
-            //clickTimes++;
-            //start = clickTimes % 2 == 0;
             start = !start;
             playerIn.sendMessage(new TextComponentString(start ? "彩虹模式启动！" : "彩虹模式关闭"));
         }
