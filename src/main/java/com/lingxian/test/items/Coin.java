@@ -46,6 +46,7 @@ public class Coin extends ItemBase {
 
     @SubscribeEvent
     public void onTick(TickEvent.PlayerTickEvent event) {
+        //测试
         EntityPlayer player = event.player;
         World world = player.world;
         if (rainbowMode) {
