@@ -18,6 +18,7 @@ public class CoinEntity extends EntityThrowable {
     public static float attackDamage = 3;
 
     // 必备构造函数，不可删
+    @SideOnly(Side.CLIENT)
     public CoinEntity(World worldIn) {
         super(worldIn);
     }

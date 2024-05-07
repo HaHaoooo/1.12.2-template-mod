@@ -17,7 +17,7 @@ public class ClientProxy extends CommonProxy {
     public void preInit() {
         super.preInit();
         // 金币投掷物实体的渲染注册
-        RenderingRegistry.registerEntityRenderingHandler(CoinEntity.class, new CoinEntityRenderer());
+        registerEntityRenderers();
     }
 
     @Override
@@ -33,5 +33,9 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerItemRenderer(Item item, int meta, String id) {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()), id));
+    }
+
+    private void registerEntityRenderers() {
+        RenderingRegistry.registerEntityRenderingHandler(CoinEntity.class, new CoinEntityRenderer.Factory());
     }
 }
