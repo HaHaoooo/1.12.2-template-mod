@@ -1,6 +1,5 @@
 package com.lingxian.test.entity;
 
-import com.lingxian.test.Registry;
 import com.lingxian.test.particle.CoinParticle;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -36,7 +35,7 @@ public class CoinEntity extends EntityThrowable {
     @SideOnly(Side.CLIENT)
     public void handleStatusUpdate(byte id) {
         if (id == 3) {
-            CoinParticle coinParticle = new CoinParticle(world, posX, posY, posZ, Registry.throwCoin, 0);
+            CoinParticle.Factory coinParticle = new CoinParticle.Factory();
             coinParticle.createParticle(100, this.world, posX, posY, posZ, 0.1, 0.1, 0.1, 1);
         }
     }
