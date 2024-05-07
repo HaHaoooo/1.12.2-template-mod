@@ -29,7 +29,7 @@ public class Coin extends ItemBase {
     public Coin(String name, int stackSize, CreativeTabs tab) {
         super(name, stackSize, tab);
     }
-
+    //测试
     //重写右键点击事件？
     @Nonnull
     @Override
@@ -46,6 +46,7 @@ public class Coin extends ItemBase {
 
     @SubscribeEvent
     public void onTick(TickEvent.PlayerTickEvent event) {
+        //测试
         EntityPlayer player = event.player;
         World world = player.world;
         if (rainbowMode) {
