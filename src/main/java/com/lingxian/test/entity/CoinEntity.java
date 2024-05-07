@@ -1,9 +1,8 @@
 package com.lingxian.test.entity;
 
+import com.lingxian.test.Registry;
 import com.lingxian.test.particle.CoinParticle;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.datafix.DataFixer;
@@ -15,6 +14,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 
 public class CoinEntity extends EntityThrowable {
+
+    public static float attackDamage = 3;
 
     // 必备构造函数，不可删
     public CoinEntity(World worldIn) {
@@ -34,10 +35,8 @@ public class CoinEntity extends EntityThrowable {
     @SideOnly(Side.CLIENT)
     public void handleStatusUpdate(byte id) {
         if (id == 3) {
-            CoinParticle coinParticle = new CoinParticle(world, posX, posY, posZ);
-            for (int i = 0; i < 8; ++i) {
-                Minecraft.getMinecraft().effectRenderer.addEffect(coinParticle);
-            }
+            CoinParticle coinParticle = new CoinParticle(world, posX, posY, posZ, Registry.throwCoin, 0);
+            coinParticle.createParticle(100, this.world, posX, posY, posZ, 0.1, 0.1, 0.1, 1);
         }
     }
 
@@ -45,11 +44,7 @@ public class CoinEntity extends EntityThrowable {
     @Override
     protected void onImpact(@Nonnull RayTraceResult result) {
         if (result.entityHit != null) {
-            int i = 0;
-            if (result.entityHit instanceof EntityPlayer) {
-                i = 5;
-            }
-            result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)i);
+            result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), attackDamage);
         }
         if (!this.world.isRemote) {
             this.world.setEntityState(this, (byte)3);
