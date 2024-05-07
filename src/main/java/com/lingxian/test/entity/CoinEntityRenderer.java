@@ -19,7 +19,6 @@ public class CoinEntityRenderer extends RenderSnowball<CoinEntity>{
 
     @Override
     public void doRender(@Nonnull CoinEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
-        entity.setRotationYawHead(10F);
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
