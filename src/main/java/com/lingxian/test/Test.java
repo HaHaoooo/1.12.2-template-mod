@@ -35,7 +35,7 @@ public class Test
     }
 
     @Mod.EventHandler
-    public void CommandRegistry(FMLServerStartingEvent event) {
+    public void ServerInit(FMLServerStartingEvent event) {
         event.registerServerCommand(new ChangeDamage());
     }
 }
