@@ -40,14 +40,14 @@ public class ChangeDamage extends CommandBase {
     @Override
     public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] args) {
         if (args.length < 2) {
-            sender.sendMessage(new TextComponentString("Usage: /damage <target> <amount>"));
+            sender.sendMessage(new TextComponentString("Usage: /damage <target> <amount/max>"));
             return;
         }
         String itemName = args[0];
-        int damageAmount = Integer.parseInt(args[1]);
+        String damageAmount = args[1];
         // 修改物品的属性（可以扔的硬币）
         if (itemName.equals("test:throw_coin")) {
-            CoinEntity.attackDamage = damageAmount;
+            CoinEntity.attackDamage = (args[1].equals("max")) ? Integer.MAX_VALUE : Integer.parseInt(damageAmount);
             EntityPlayer player = null;
             if (sender instanceof EntityPlayer){
                 player = (EntityPlayer) sender;
@@ -55,7 +55,7 @@ public class ChangeDamage extends CommandBase {
             Style style = new Style().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentString(new ItemStack(Registry.throwCoin).getTooltip(player, () -> false).get(1))));
             TextComponentString string1 = new TextComponentString("物品[");
             ITextComponent string2 = new TextComponentString(TextFormatting.YELLOW + Registry.throwCoin.getItemStackDisplayName(new ItemStack(Registry.throwCoin)) + TextFormatting.WHITE).setStyle(style);
-            TextComponentString string3 = new TextComponentString("]的投掷伤害已修改为" + damageAmount);
+            TextComponentString string3 = new TextComponentString("]的投掷伤害已修改为" + CoinEntity.attackDamage);
             sender.sendMessage(string1.appendSibling(string2).appendSibling(string3));
         } else {
             sender.sendMessage(new TextComponentString("无效物品名"));

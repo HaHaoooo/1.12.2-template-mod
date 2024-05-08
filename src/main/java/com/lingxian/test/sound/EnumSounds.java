@@ -5,7 +5,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 
 public enum EnumSounds {
-    COIN_SHOOT("coin_shoot");
+    COIN_SHOOT("coin_shoot"),
+    RAINBOW("rainbow");
 
     private final SoundEvent soundEvent;
 

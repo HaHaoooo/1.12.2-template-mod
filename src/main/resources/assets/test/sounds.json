@@ -4,5 +4,12 @@
         "sounds": [
             "test:coin_shoot"
         ]
+    },
+
+    "rainbow": {
+        "category": "master",
+        "sounds": [
+            "test:rainbow"
+        ]
     }
 }

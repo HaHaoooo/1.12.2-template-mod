@@ -59,5 +59,6 @@ public class Registry {
     @SubscribeEvent
     public static void onSoundEvenrRegistration(RegistryEvent.Register<SoundEvent> event) {
         event.getRegistry().register(EnumSounds.COIN_SHOOT.getSoundEvent());
+        event.getRegistry().register(EnumSounds.RAINBOW.getSoundEvent());
     }
 }

@@ -1,5 +1,6 @@
 package com.lingxian.test.items;
 
+import com.lingxian.test.sound.EnumSounds;
 import net.minecraft.block.BlockColored;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -29,7 +30,7 @@ public class Coin extends ItemBase {
     public Coin(String name, int stackSize, CreativeTabs tab) {
         super(name, stackSize, tab);
     }
-    //测试
+
     //重写右键点击事件？
     @Nonnull
     @Override
@@ -41,12 +42,14 @@ public class Coin extends ItemBase {
             rainbowMode = !rainbowMode;
             playerIn.sendMessage(new TextComponentString(rainbowMode ? "彩虹模式启动！" : "彩虹模式关闭！"));
         }
+        if (!rainbowMode) {
+            playerIn.playSound(EnumSounds.RAINBOW.getSoundEvent(), 1F, 1F);
+        }
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
     @SubscribeEvent
     public void onTick(TickEvent.PlayerTickEvent event) {
-        //测试
         EntityPlayer player = event.player;
         World world = player.world;
         if (rainbowMode) {

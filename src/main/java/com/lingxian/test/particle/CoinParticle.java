@@ -21,6 +21,7 @@ public class CoinParticle extends Particle{
         this.motionY = this.rand.nextGaussian() * 0.1D;
         this.motionZ = this.rand.nextGaussian() * 0.1D;
         this.setParticleTexture(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(Registry.throwCoin));
+        this.setMaxAge(30);
     }
 
     // 粒子将渲染在前景图层上
