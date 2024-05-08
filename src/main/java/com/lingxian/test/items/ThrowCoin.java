@@ -1,15 +1,16 @@
 package com.lingxian.test.items;
 
 import com.lingxian.test.entity.CoinEntity;
+import com.lingxian.test.sound.EnumSounds;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
@@ -26,8 +27,9 @@ public class ThrowCoin extends ItemBase {
     @Nonnull
     @Override
     public ActionResult<ItemStack> onItemRightClick(@Nonnull World worldIn, @Nonnull EntityPlayer playerIn, @Nonnull EnumHand handIn) {
+        BlockPos soundPos = new BlockPos(playerIn.posX, playerIn.posY, playerIn.posZ);
+        worldIn.playSound(playerIn, soundPos, EnumSounds.COIN_SHOOT.getSoundEvent(), SoundCategory.MASTER, 1F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
         ItemStack item = playerIn.getHeldItem(handIn);
-        worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
         if (!worldIn.isRemote){
             CoinEntity entity = new CoinEntity(worldIn, playerIn);
             entity.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);

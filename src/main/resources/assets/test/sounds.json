@@ -1,0 +1,8 @@
+{
+    "coin_shoot": {
+        "category": "master",
+        "sounds": [
+            "test:coin_shoot"
+        ]
+    }
+}

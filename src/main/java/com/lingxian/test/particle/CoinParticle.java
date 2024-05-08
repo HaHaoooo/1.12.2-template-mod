@@ -32,8 +32,8 @@ public class CoinParticle extends Particle{
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (this.motionY > 0) {
-            this.motionY -= 0.1D;
+        if (!this.onGround) {
+            this.motionY -= 0.04D;
         }
     }
 

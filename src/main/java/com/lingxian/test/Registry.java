@@ -3,9 +3,11 @@ package com.lingxian.test;
 import com.lingxian.test.entity.CoinEntity;
 import com.lingxian.test.items.Coin;
 import com.lingxian.test.items.ThrowCoin;
+import com.lingxian.test.sound.EnumSounds;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -51,6 +53,10 @@ public class Registry {
             .name("test.coin_entity")
             .tracker(64, 10, true)
             .build());
-        System.out.println("The Coin Entity has been registered, id = " + new ResourceLocation(Test.MODID, "coin_entity"));
+    }
+
+    @SubscribeEvent
+    public static void onSoundEvenrRegistration(RegistryEvent.Register<SoundEvent> event) {
+        event.getRegistry().register(EnumSounds.COIN_SHOOT.getSoundEvent());
     }
 }
