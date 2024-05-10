@@ -1,6 +1,9 @@
 package com.lingxian.test;
 
 import com.lingxian.test.entity.CoinEntity;
+import com.lingxian.test.entity.CoinEntityRenderer;
+import com.lingxian.test.entity.TennisBall;
+import com.lingxian.test.entity.TennisBallRenderer;
 import com.lingxian.test.items.Coin;
 import com.lingxian.test.items.ThrowCoin;
 import com.lingxian.test.sound.EnumSounds;
@@ -10,6 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -42,17 +46,25 @@ public class Registry {
                 ((IModel) item).RegisterModel();
             }
         }
+        registerEntityRenderers();
     }
 
     // 注册实体
     @SubscribeEvent
     public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
         event.getRegistry().register(EntityEntryBuilder.create()
-            .entity(CoinEntity.class)
-            .id(new ResourceLocation(Test.MODID, "coin_entity"), 0)
-            .name("test.coin_entity")
-            .tracker(64, 10, true)
-            .build());
+                .entity(CoinEntity.class)
+                .id(new ResourceLocation(Test.MODID, "coin_entity"), 1000)
+                .name("test.coin_entity")
+                .tracker(64, 10, true)
+                .build());
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(TennisBall.class)
+                .id(new ResourceLocation(Test.MODID, "tennis_ball"), 1001)
+                .name("test.tennis_ball")
+                .tracker(64, 3, true)
+                .egg(1, -6684928)
+                .build());
     }
 
     // 注册声音
@@ -60,5 +72,10 @@ public class Registry {
     public static void onSoundEvenrRegistration(RegistryEvent.Register<SoundEvent> event) {
         event.getRegistry().register(EnumSounds.COIN_SHOOT.getSoundEvent());
         event.getRegistry().register(EnumSounds.RAINBOW.getSoundEvent());
+    }
+
+    private static void registerEntityRenderers() {
+        RenderingRegistry.registerEntityRenderingHandler(CoinEntity.class, new CoinEntityRenderer.Factory());
+        RenderingRegistry.registerEntityRenderingHandler(TennisBall.class, new TennisBallRenderer.Factory());
     }
 }
