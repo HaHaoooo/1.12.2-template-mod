@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class JuQingCompositeObjects {
         items.add(new ItemBase("ju_qing_dtone", 64, CreativeTabs.MISC) {
             //增加物品描述
             @Override
-            public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+            public void addInformation(@Nonnull ItemStack stack, @Nullable World worldIn, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flagIn) {
                 String info = TextFormatting.GREEN + "这颗石头散发着清脆的力量！";
                 System.out.println("巨青石描述：" + info);
                 tooltip.add(info);
