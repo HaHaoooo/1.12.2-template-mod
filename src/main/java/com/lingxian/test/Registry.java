@@ -5,6 +5,7 @@ import com.lingxian.test.entity.CoinEntityRenderer;
 import com.lingxian.test.entity.TennisBall;
 import com.lingxian.test.entity.TennisBallRenderer;
 import com.lingxian.test.items.Coin;
+import com.lingxian.test.items.JuQingCompositeObjects;
 import com.lingxian.test.items.ThrowCoin;
 import com.lingxian.test.sound.EnumSounds;
 import net.minecraft.creativetab.CreativeTabs;
@@ -31,6 +32,7 @@ public class Registry {
     // 注册物品
     @SubscribeEvent
     public static void registryItems(RegistryEvent.Register<Item> register) {
+        ITEMS.addAll(JuQingCompositeObjects.getJuQing());
         ITEMS.add(coin);
         ITEMS.add(throwCoin);
         for (Item item : ITEMS) {
