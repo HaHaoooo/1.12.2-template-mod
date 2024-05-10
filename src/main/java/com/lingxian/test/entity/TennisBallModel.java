@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 
 import javax.annotation.Nonnull;
 
+// This model was made by BlockBench
 public class TennisBallModel extends ModelBase {
 	private final ModelRenderer bb_main;
 
