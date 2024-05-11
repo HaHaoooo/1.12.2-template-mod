@@ -1,7 +1,7 @@
 # Items
 item.test.coin.name=金币
 item.test.throw_coin.name=可以扔的金币
-item.test.ju_qing_dtone.name=巨青石
+item.test.ju_qing_stone.name=巨青石
 
 # Entities
 entity.test.coin_entity.name=金币实体

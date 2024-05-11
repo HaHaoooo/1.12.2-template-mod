@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @since 2024-05-10 21:00   @author jcj  @version 1.00
+ * @since 2024-05-10 21:00   @author jcj  @version 1.0.0
  * Description 巨青物品系列批量物品实例生成
  */
 public class JuQingCompositeObjects {
@@ -21,7 +21,7 @@ public class JuQingCompositeObjects {
     public static List<Item> getJuQing() {
         ArrayList<Item> items = new ArrayList<>();
         //使用匿名内部类创建物品实例
-        items.add(new ItemBase("ju_qing_dtone", 64, CreativeTabs.MISC) {
+        items.add(new ItemBase("ju_qing_stone", 64, CreativeTabs.MISC) {
             //增加物品描述
             @Override
             public void addInformation(@Nonnull ItemStack stack, @Nullable World worldIn, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flagIn) {
