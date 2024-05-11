@@ -26,7 +26,6 @@ public class JuQingCompositeObjects {
             @Override
             public void addInformation(@Nonnull ItemStack stack, @Nullable World worldIn, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flagIn) {
                 String info = TextFormatting.GREEN + "这颗石头散发着清脆的力量！";
-                System.out.println("巨青石描述：" + info);
                 tooltip.add(info);
                 super.addInformation(stack, worldIn, tooltip, flagIn);
             }
