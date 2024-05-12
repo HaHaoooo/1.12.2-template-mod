@@ -1,5 +1,6 @@
 package com.lingxian.test.items;
 
+import com.lingxian.test.items.base.ItemBase;
 import com.lingxian.test.sound.EnumSounds;
 import net.minecraft.block.BlockColored;
 import net.minecraft.client.util.ITooltipFlag;

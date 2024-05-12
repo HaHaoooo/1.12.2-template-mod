@@ -5,7 +5,7 @@ import com.lingxian.test.entity.CoinEntityRenderer;
 import com.lingxian.test.entity.TennisBall;
 import com.lingxian.test.entity.TennisBallRenderer;
 import com.lingxian.test.items.Coin;
-import com.lingxian.test.items.JuQingCompositeObjects;
+import com.lingxian.test.items.batch.JuQingCompositeObjects;
 import com.lingxian.test.items.ThrowCoin;
 import com.lingxian.test.sound.EnumSounds;
 import net.minecraft.creativetab.CreativeTabs;
@@ -44,9 +44,10 @@ public class Registry {
     @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event) {
         for (Item item : ITEMS) {
-            if (item instanceof IModel) {
+            /*if (item instanceof IModel) {
                 ((IModel) item).RegisterModel();
-            }
+            }*/
+            Test.proxy.registerItemRenderer(item, 0, "inventory");
         }
         registerEntityRenderers();
     }
