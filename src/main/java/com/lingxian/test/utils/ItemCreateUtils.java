@@ -18,9 +18,9 @@ public class ItemCreateUtils {
         return new ItemBaseExtension(name, stackSize, tab, itemInfo);
     }
     //注册食物
-    public static ItemFoodBase buildItemFoodBase(String name, int stackSize, CreativeTabs tab, String itemInfo, int health, float saturation, boolean isWolfFood) {
+    /*public static ItemFoodBase buildItemFoodBase(String name, int stackSize, CreativeTabs tab, String itemInfo, int health, float saturation, boolean isWolfFood) {
         return new ItemFoodBase(name, stackSize, tab, itemInfo, health, saturation, isWolfFood);
-    }
+    }*/
 
 
 
