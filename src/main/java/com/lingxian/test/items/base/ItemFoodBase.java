@@ -6,9 +6,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -24,8 +24,9 @@ public class ItemFoodBase extends ItemFood {
 
     //附魔效果
     @Override
-    public boolean hasEffect(ItemStack stack) {
-        return super.hasEffect(stack) || true;
+    public boolean hasEffect(@Nonnull ItemStack stack) {
+        super.hasEffect(stack);
+        return true;
     }
 
     /**
@@ -37,8 +38,8 @@ public class ItemFoodBase extends ItemFood {
      * @param recoveryDose 回复饥饿值
      * @param saturation   回复饱和度（MC中的饱和度将会优先饥饿值被消耗。如果饱和度没了鸡腿ui就会开始抖动）
      * @param isWolfFood   是否是狼食？
-     * @author: jcj
-     * @since: 2024-05-11 14:12
+     * &#064;author:  jcj
+     * &#064;since:  2024-05-11 14:12
      */
     public ItemFoodBase(String name, int stackSize, CreativeTabs tab, String itemInfo, int recoveryDose, float saturation, boolean isWolfFood, List<PotionEffectConstruction> potionEffects) {
         super(recoveryDose, saturation, isWolfFood);
@@ -62,15 +63,15 @@ public class ItemFoodBase extends ItemFood {
 
     //添加物品描述信息
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        if (!worldIn.isRemote) {
+    public void addInformation(@Nonnull ItemStack stack, @Nullable World worldIn, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flagIn) {
+        if (worldIn != null && !worldIn.isRemote) {
             tooltip.add(itemInfo);
         }
     }
 
     //添加实用后的效果
     @Override
-    protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
+    protected void onFoodEaten(@Nonnull ItemStack stack, World worldIn, @Nonnull EntityPlayer player) {
         //逻辑服务端和逻辑客户端好像会调用两次
         System.out.println(worldIn.isRemote);
         if (!worldIn.isRemote) {
