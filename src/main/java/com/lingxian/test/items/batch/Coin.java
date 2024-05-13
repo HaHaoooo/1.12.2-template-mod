@@ -1,4 +1,4 @@
-package com.lingxian.test.items;
+package com.lingxian.test.items.batch;
 
 import com.lingxian.test.items.base.ItemBase;
 import com.lingxian.test.sound.EnumSounds;
@@ -23,6 +23,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class Coin extends ItemBase {
+
+    public static Coin INSTANCE = new Coin("coin", 1, CreativeTabs.MISC);
 
     private int currentColorIndex = -1;
     private int ticks = 0;

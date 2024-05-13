@@ -1,6 +1,8 @@
-package com.lingxian.test.entity;
+package com.lingxian.test.entity.renderer;
 
 import com.lingxian.test.Test;
+import com.lingxian.test.entity.TennisBall;
+import com.lingxian.test.entity.model.TennisBallModel;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.util.ResourceLocation;

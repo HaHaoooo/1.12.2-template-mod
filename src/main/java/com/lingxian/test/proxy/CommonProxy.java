@@ -1,7 +1,6 @@
 package com.lingxian.test.proxy;
 
 import com.lingxian.test.entity.CoinEntity;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class CommonProxy {
@@ -15,5 +14,4 @@ public class CommonProxy {
     public void postInit() {
 
     }
-    public void registerItemRenderer(Item item, int meta, String id) {}
 }
