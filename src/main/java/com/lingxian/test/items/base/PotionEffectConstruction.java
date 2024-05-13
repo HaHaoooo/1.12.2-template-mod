@@ -16,8 +16,8 @@ public class PotionEffectConstruction extends PotionEffect {
      * @param potionIn    药水类型
      * @param durationMax 最大药水持续时间（秒）
      * @param potionLevel 药水等级
-     * @author: jcj
-     * @since: 2024-05-13 22:20
+     * &#064;author:  jcj
+     * &#064;since:  2024-05-13 22:20
      */
     public PotionEffectConstruction(Potion potionIn, int durationMax, int potionLevel) {
         super(potionIn, durationMax * 20, potionLevel <= 0 ? 0 : (potionLevel - 1));
