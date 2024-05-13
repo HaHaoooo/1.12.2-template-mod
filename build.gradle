@@ -121,3 +121,4 @@ sourceSets { main { output.resourcesDir = output.classesDir } }
 tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
 }
+
