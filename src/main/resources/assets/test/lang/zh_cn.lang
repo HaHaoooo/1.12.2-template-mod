@@ -2,6 +2,13 @@
 item.test.coin.name=金币
 item.test.throw_coin.name=可以扔的金币
 item.test.ju_qing_stone.name=巨青石
+item.test.tennis_balls.name=网球收集器
+
+# Item Block
+item.test.sky_crystal.name=天晶石
+
+# Block
+tile.test.sky_crystal.name=天晶石
 
 # Entities
 entity.test.coin_entity.name=金币实体

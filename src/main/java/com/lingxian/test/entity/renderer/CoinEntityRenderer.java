@@ -1,6 +1,7 @@
-package com.lingxian.test.entity;
+package com.lingxian.test.entity.renderer;
 
-import com.lingxian.test.Registry;
+import com.lingxian.test.entity.CoinEntity;
+import com.lingxian.test.items.batch.ThrowCoin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.entity.Render;
@@ -26,7 +27,7 @@ public class CoinEntityRenderer extends RenderSnowball<CoinEntity>{
         @Override
         public Render<? super CoinEntity> createRenderFor(RenderManager manager) {
             RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-            return new CoinEntityRenderer(manager, Registry.throwCoin, renderItem);
+            return new CoinEntityRenderer(manager, ThrowCoin.INSTANCE, renderItem);
         }
     }
 }

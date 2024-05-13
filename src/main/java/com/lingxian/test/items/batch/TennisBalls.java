@@ -1,6 +1,7 @@
-package com.lingxian.test.items;
+package com.lingxian.test.items.batch;
 
 import com.lingxian.test.entity.TennisBall;
+import com.lingxian.test.items.base.ItemBase;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -16,6 +17,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class TennisBalls extends ItemBase {
+
+    public static TennisBalls INSTANCE = new TennisBalls("tennis_balls", 1, CreativeTabs.MISC);
 
     public TennisBalls(String name, int stackSize, CreativeTabs tab) {
         super(name, stackSize, tab);
@@ -33,6 +36,7 @@ public class TennisBalls extends ItemBase {
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
+    // 右键点击网球，回收网球
     @SubscribeEvent
     public void onRightClickEntity(PlayerInteractEvent.EntityInteract event) {
         World world = event.getWorld();
@@ -40,7 +44,7 @@ public class TennisBalls extends ItemBase {
         Entity entity = event.getTarget();
 
         if (!world.isRemote){
-            if (itemStack.getItem() == this){
+            if (itemStack.getItem() == this && entity instanceof TennisBall){
                 NBTTagCompound itemStackTag = itemStack.getTagCompound();
                 if (itemStackTag != null){
                     world.removeEntity(entity);
@@ -54,6 +58,7 @@ public class TennisBalls extends ItemBase {
         }
     }
 
+    // 右键点击方块，放出网球
     @SubscribeEvent
     public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         World world = event.getWorld();

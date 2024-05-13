@@ -1,4 +1,4 @@
-package com.lingxian.test.items;
+package com.lingxian.test.items.batch;
 
 import com.lingxian.test.entity.CoinEntity;
 import com.lingxian.test.items.base.ItemBase;
@@ -18,6 +18,9 @@ import java.util.List;
 
 // 可以扔的金币
 public class ThrowCoin extends ItemBase {
+
+    public static ThrowCoin INSTANCE = new ThrowCoin("throw_coin", 16, CreativeTabs.MISC);
+
     public ThrowCoin(String name, int stackSize, CreativeTabs tab) {
         super(name, stackSize, tab);
     }

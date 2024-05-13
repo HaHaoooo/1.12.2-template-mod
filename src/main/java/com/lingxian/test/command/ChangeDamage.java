@@ -1,7 +1,7 @@
 package com.lingxian.test.command;
 
-import com.lingxian.test.Registry;
 import com.lingxian.test.entity.CoinEntity;
+import com.lingxian.test.items.batch.ThrowCoin;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,9 +52,9 @@ public class ChangeDamage extends CommandBase {
             if (sender instanceof EntityPlayer){
                 player = (EntityPlayer) sender;
             }
-            Style style = new Style().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentString(new ItemStack(Registry.throwCoin).getTooltip(player, () -> false).get(1))));
+            Style style = new Style().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentString(new ItemStack(ThrowCoin.INSTANCE).getTooltip(player, () -> false).get(1))));
             TextComponentString string1 = new TextComponentString("物品[");
-            ITextComponent string2 = new TextComponentString(TextFormatting.YELLOW + Registry.throwCoin.getItemStackDisplayName(new ItemStack(Registry.throwCoin)) + TextFormatting.WHITE).setStyle(style);
+            ITextComponent string2 = new TextComponentString(TextFormatting.YELLOW + ThrowCoin.INSTANCE.getItemStackDisplayName(new ItemStack(ThrowCoin.INSTANCE)) + TextFormatting.WHITE).setStyle(style);
             TextComponentString string3 = new TextComponentString("]的投掷伤害已修改为" + CoinEntity.attackDamage);
             sender.sendMessage(string1.appendSibling(string2).appendSibling(string3));
         } else {

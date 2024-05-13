@@ -1,6 +1,6 @@
 package com.lingxian.test.particle;
 
-import com.lingxian.test.Registry;
+import com.lingxian.test.items.batch.ThrowCoin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.*;
 import net.minecraft.world.World;
@@ -20,7 +20,7 @@ public class CoinParticle extends Particle{
         this.motionX = this.rand.nextGaussian() * 0.1D;
         this.motionY = this.rand.nextGaussian() * 0.1D;
         this.motionZ = this.rand.nextGaussian() * 0.1D;
-        this.setParticleTexture(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(Registry.throwCoin));
+        this.setParticleTexture(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(ThrowCoin.INSTANCE));
         this.setMaxAge(30);
     }
 
