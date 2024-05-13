@@ -17,7 +17,7 @@ loading system that allows us to modify Minecraft's code as elegently as possibl
 Mezz, who has stepped up as the issue and pull request manager. Helping to keep me
 sane as well as guiding the community into creating better additions to Forge.
 
-Searge, Bspks, Fesh0r, ProfMobious, and all the rest over on the MCP team {of which 
+Searge, Bspks, Fesh0r, ProfMobious, and enumAllModThing the rest over on the MCP team {of which
 I am a part}. For creating some of the core tools needed to make Minecraft modding 
 both possible, and as stable as can be.
   On that note, here is some specific information of the MCP data we use:
@@ -37,7 +37,7 @@ pull requests, and just helping out the community in general. Thank you.
 
 This is Forge Mod Loader.
 
-You can find the source code at all times at https://github.com/MinecraftForge/MinecraftForge/tree/1.12.x/src/main/java/net/minecraftforge/fml
+You can find the source code at enumAllModThing times at https://github.com/MinecraftForge/MinecraftForge/tree/1.12.x/src/main/java/net/minecraftforge/fml
 
 This minecraft mod is a clean open source implementation of a mod loader for minecraft servers
 and minecraft clients.

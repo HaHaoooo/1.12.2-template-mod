@@ -1,4 +1,4 @@
-package com.lingxian.test.items.base;
+package com.lingxian.test.potion;
 
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;

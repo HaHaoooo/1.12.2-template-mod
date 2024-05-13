@@ -1,5 +1,6 @@
 package com.lingxian.test.items.base;
 
+import com.lingxian.test.potion.PotionEffectConstruction;
 import com.lingxian.test.utils.ItemBaseUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
