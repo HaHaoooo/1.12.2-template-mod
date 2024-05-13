@@ -2,7 +2,6 @@
 item.test.coin.name=Coin
 item.test.throw_coin.name=Throwable Coin
 item.test.ju_qing_stone.name=Ju Qing Stone
-item.test.tennis_balls.name=Tennis Ball Collector
 
 # Entities
 entity.test.coin_entity.name=Coin Entity

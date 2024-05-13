@@ -6,7 +6,6 @@ import com.lingxian.test.entity.TennisBall;
 import com.lingxian.test.entity.TennisBallRenderer;
 import com.lingxian.test.items.Coin;
 import com.lingxian.test.items.JuQingCompositeObjects;
-import com.lingxian.test.items.TennisBalls;
 import com.lingxian.test.items.ThrowCoin;
 import com.lingxian.test.sound.EnumSounds;
 import net.minecraft.creativetab.CreativeTabs;
@@ -29,7 +28,6 @@ public class Registry {
     public static ArrayList<Item> ITEMS = new ArrayList<>();
     public static Coin coin = new Coin("coin", 1, CreativeTabs.MISC);
     public static ThrowCoin throwCoin = new ThrowCoin("throw_coin", 16, CreativeTabs.MISC);
-    public static TennisBalls tennisBalls = new TennisBalls("tennis_balls", 1, CreativeTabs.MISC);
 
     // 注册物品
     @SubscribeEvent
@@ -37,7 +35,6 @@ public class Registry {
         ITEMS.addAll(JuQingCompositeObjects.getJuQing());
         ITEMS.add(coin);
         ITEMS.add(throwCoin);
-        ITEMS.add(tennisBalls);
         for (Item item : ITEMS) {
             register.getRegistry().register(item);
         }

@@ -1,6 +1,7 @@
 package com.lingxian.test.items;
 
 import com.lingxian.test.entity.CoinEntity;
+import com.lingxian.test.items.base.ItemBase;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
