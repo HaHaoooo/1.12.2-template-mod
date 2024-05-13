@@ -4,8 +4,8 @@ import com.lingxian.test.blocks.batch.SkyCrystalBlock;
 import com.lingxian.test.entity.*;
 import com.lingxian.test.entity.renderer.CoinEntityRenderer;
 import com.lingxian.test.entity.renderer.TennisBallRenderer;
+import com.lingxian.test.items.base.JuQingCompositeObjects;
 import com.lingxian.test.items.batch.Coin;
-import com.lingxian.test.items.batch.JuQingStone;
 import com.lingxian.test.items.batch.TennisBalls;
 import com.lingxian.test.items.batch.ThrowCoin;
 import com.lingxian.test.sound.EnumSounds;
@@ -42,10 +42,11 @@ public class Registry {
     // 注册物品
     @SubscribeEvent
     public static void registryItems(RegistryEvent.Register<Item> register) {
-        ITEMS.add(JuQingStone.INSTANCE);
         ITEMS.add(Coin.INSTANCE);
         ITEMS.add(ThrowCoin.INSTANCE);
         ITEMS.add(TennisBalls.INSTANCE);
+        //巨青系列
+        ITEMS.addAll(JuQingCompositeObjects.getJuQing());
         for (Item item : ITEMS) {
             register.getRegistry().register(item);
         }
