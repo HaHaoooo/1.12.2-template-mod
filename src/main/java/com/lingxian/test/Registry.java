@@ -24,8 +24,7 @@ import java.util.HashMap;
 @Mod.EventBusSubscriber(modid = Test.MODID)
 public class Registry {
 
-    @SuppressWarnings("unsafe")
-    public static HashMap<Class<? extends Entity>, IRenderFactory> ENTITY_RENDERERS = new HashMap<>();
+    public static HashMap<Class<? extends Entity>, IRenderFactory<? extends Entity>> ENTITY_RENDERERS = new HashMap<>();
 
     // 注册物品
     @SubscribeEvent
@@ -65,9 +64,9 @@ public class Registry {
         }
 
         // Entity Model Registry
-        ENTITY_RENDERERS.put(CoinEntity.class, new CoinEntityRenderer.Factory());
-        ENTITY_RENDERERS.put(TennisBall.class, new TennisBallRenderer.Factory());
-        ENTITY_RENDERERS.forEach(RenderingRegistry::registerEntityRenderingHandler);
+        registerEntityRenderingHandler(CoinEntity.class, new CoinEntityRenderer.Factory());
+        registerEntityRenderingHandler(TennisBall.class, new TennisBallRenderer.Factory());
+
     }
 
     // 注册实体
@@ -94,5 +93,10 @@ public class Registry {
         for (EnumSounds enumSounds : EnumSounds.values()){
             event.getRegistry().register(enumSounds.getSoundEvent());
         }
+    }
+
+    public static <T extends Entity> void registerEntityRenderingHandler(Class<T> entityClass, IRenderFactory<? super T> renderFactory) {
+        ENTITY_RENDERERS.put(entityClass, renderFactory);
+        RenderingRegistry.registerEntityRenderingHandler(entityClass, renderFactory);
     }
 }
